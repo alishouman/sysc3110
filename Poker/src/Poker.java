@@ -10,7 +10,7 @@ public class Poker {
     private Collection<Hand> hands;
 
     /**
-     * Create a new game of poker (empty at first)
+     *aaaa Create a new game of poker (empty at first)
      */
     public Poker(){
         hands = new ArrayList<Hand>();

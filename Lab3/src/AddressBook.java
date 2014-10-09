@@ -25,9 +25,19 @@ public BuddyInfo removeBuddy(int index){
 }
 	
 public static void main(String[] args) {
-	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton",1234);
+	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234");
 	AddressBook addressBook=new AddressBook();
 	addressBook.addBuddy(buddy);
 	addressBook.removeBuddy(0);
+}
+
+
+public List<BuddyInfo> getBuddyInfo() {
+	return buddyInfo;
+}
+
+
+public void setBuddyInfo(List<BuddyInfo> buddyInfo) {
+	this.buddyInfo = buddyInfo;
 }
 }

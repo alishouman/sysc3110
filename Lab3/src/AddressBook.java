@@ -1,27 +1,29 @@
-import java.util.List;
 import java.util.*;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
-public class AddressBook {
+
+public class AddressBook extends DefaultListModel {
 
 
-		private List<BuddyInfo> buddyInfo;
+		//private List<BuddyInfo> buddyInfo;
 		public AddressBook(){
-		this.buddyInfo=new ArrayList<BuddyInfo>();}
-			
+		super();//this.buddyInfo=new ArrayList<BuddyInfo>();}
+		}
 		
 public void addBuddy(BuddyInfo aBuddyInfo){
 	if(aBuddyInfo!=null){
-		this.buddyInfo.add(aBuddyInfo);
+		this.addElement(aBuddyInfo);
 		
 	}
 	
 }
-public BuddyInfo removeBuddy(int index){
-	if(index>=0&& index <this.buddyInfo.size()){
-		return this.buddyInfo.remove(index);
+public void removeBuddy(int index){
+	if(index>=0&& index <this.size()){
+		 this.remove(index);
 	}
-	return null;
+
 }
 	
 public static void main(String[] args) {
@@ -32,12 +34,12 @@ public static void main(String[] args) {
 }
 
 
-public List<BuddyInfo> getBuddyInfo() {
-	return buddyInfo;
-}
+//public List<BuddyInfo> getBuddyInfo() {
+	//return buddyInfo;
+//}
 
 
-public void setBuddyInfo(List<BuddyInfo> buddyInfo) {
-	this.buddyInfo = buddyInfo;
-}
+//public void setBuddyInfo(List<BuddyInfo> buddyInfo) {
+//	this.buddyInfo = buddyInfo;
+//}
 }

@@ -14,11 +14,13 @@ public class MenuFrame extends JFrame implements ActionListener {
 	AddressBook addressBook;
 	JTextArea area;
 	JMenu BuddyInfoMenu;
+	JList addressBookView;
 	public MenuFrame(){
-		frame=new JFrame("Address Book");
+		super("Address Book");
+		//frame=new JFrame("Address Book");
 		JMenuBar menuBar = new JMenuBar( );
-	    frame.setJMenuBar( menuBar );
-	    frame.setSize(400, 300);
+	   setJMenuBar( menuBar );
+	   setSize(400, 300);
 	   
 	    JMenu AddressBookMenu= new JMenu("Address Book");
 	    menuBar.add(AddressBookMenu);
@@ -41,10 +43,19 @@ public class MenuFrame extends JFrame implements ActionListener {
 	    BuddyInfoMenu.add( addItem );
 	    addItem.addActionListener( this );
 	    addItem.setActionCommand("add");
+	    JMenuItem removeItem = new JMenuItem( "Remove" );
+	    BuddyInfoMenu.add( removeItem );
+	    removeItem.addActionListener( this );
+	    removeItem.setActionCommand("remove");
+	    JMenuItem editItem = new JMenuItem( "Edit" );
+	    BuddyInfoMenu.add( editItem );
+	    editItem.addActionListener( this );
+	    editItem.setActionCommand("edit");
+	   
 	 
-	   area=new JTextArea(5,20);
-	   frame.add(area);
-	   frame.setVisible(true);
+	   //area=new JTextArea(5,20);
+	 //  add(area);
+	  setVisible(true);
 
 	}
 
@@ -53,14 +64,16 @@ public class MenuFrame extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if (arg0.getActionCommand().equals("create")){
 			 addressBook=new AddressBook();
+			 addressBookView = new JList(addressBook);
+			 add(addressBookView);
 			  BuddyInfoMenu.setEnabled(true);
 		}
 if (arg0.getActionCommand().equals("save")){
 	String text="" ;
 	BufferedWriter out = null;
-	for(BuddyInfo b:addressBook.getBuddyInfo()){
+	/*for(BuddyInfo b:addressBook.getBuddyInfo()){
 		text=text+b.toString();
-	}
+	}*/
 
 	
 		
@@ -88,9 +101,9 @@ try {
 		}
 if (arg0.getActionCommand().equals("display")){
 	
-	for(BuddyInfo b:addressBook.getBuddyInfo()){
-		area.append(b.toString());
-	}
+	//for(BuddyInfo b:addressBook.getBuddyInfo()){
+		//area.append(b.toString());
+	//}
 }
 		if (arg0.getActionCommand().equals("add")){
 			 String name = JOptionPane.showInputDialog(frame, "What's the Buddy name");
@@ -98,6 +111,21 @@ if (arg0.getActionCommand().equals("display")){
 			 String telephone = JOptionPane.showInputDialog(frame, "What's the Buddy telephone");
 			 addressBook.addBuddy(new BuddyInfo(name,address,telephone));
 		}
+		if (arg0.getActionCommand().equals("remove")){
+			
+			 addressBook.removeBuddy(addressBookView.getSelectedIndex());
+		}
+		if (arg0.getActionCommand().equals("edit")){
+			
+			 addressBook.removeBuddy(addressBookView.getSelectedIndex());
+			 String name = JOptionPane.showInputDialog(frame, "What's the Buddy name");
+			 String address = JOptionPane.showInputDialog(frame, "What's the Buddy address");
+			 String telephone = JOptionPane.showInputDialog(frame, "What's the Buddy telephone");
+			 addressBook.addBuddy(new BuddyInfo(name,address,telephone));
+			 
+		}
+		
+	
 		
 	}
 	public static void main(String[]args){

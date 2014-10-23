@@ -109,7 +109,9 @@ if (arg0.getActionCommand().equals("display")){
 			 String name = JOptionPane.showInputDialog(frame, "What's the Buddy name");
 			 String address = JOptionPane.showInputDialog(frame, "What's the Buddy address");
 			 String telephone = JOptionPane.showInputDialog(frame, "What's the Buddy telephone");
-			 addressBook.addBuddy(new BuddyInfo(name,address,telephone));
+			 String age = JOptionPane.showInputDialog(frame, "What's the Buddy age");
+			 int age1=Integer.parseInt(age);
+			 addressBook.addBuddy(new BuddyInfo(name,address,telephone,age1));
 		}
 		if (arg0.getActionCommand().equals("remove")){
 			
@@ -121,7 +123,9 @@ if (arg0.getActionCommand().equals("display")){
 			 String name = JOptionPane.showInputDialog(frame, "What's the Buddy name");
 			 String address = JOptionPane.showInputDialog(frame, "What's the Buddy address");
 			 String telephone = JOptionPane.showInputDialog(frame, "What's the Buddy telephone");
-			 addressBook.addBuddy(new BuddyInfo(name,address,telephone));
+			 String age = JOptionPane.showInputDialog(frame, "What's the Buddy age");
+			 int age1=Integer.parseInt(age);
+			 addressBook.addBuddy(new BuddyInfo(name,address,telephone,age1));
 			 
 		}
 		

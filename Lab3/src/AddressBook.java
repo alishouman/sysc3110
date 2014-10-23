@@ -25,9 +25,15 @@ public void removeBuddy(int index){
 	}
 
 }
+public int size(){
+	return this.getSize();
+}
+public void clear(){
+	this.clear();
+}
 	
 public static void main(String[] args) {
-	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234");
+	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234",20);
 	AddressBook addressBook=new AddressBook();
 	addressBook.addBuddy(buddy);
 	addressBook.removeBuddy(0);

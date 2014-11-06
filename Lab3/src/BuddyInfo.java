@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 
 public class BuddyInfo {
 private String name;
@@ -30,7 +32,7 @@ public boolean equals(BuddyInfo buddy){
 	
 }
 public String toString(){
-	return "Name is "+this.name+", address is "+this.address+", and telephone is "+this.telephone;
+	return this.name+"$"+this.address+"$"+this.telephone;
 	
 }
 public String greeting(){
@@ -42,6 +44,12 @@ public Boolean isOver18(){
 		return true;
 	}
 	return false;
+}
+public static BuddyInfo import1(String s){
+	Scanner sc = new Scanner(s).useDelimiter("\\s*$\\s*");
+	BuddyInfo buddy=new BuddyInfo(sc.next(),sc.next(),sc.next(),sc.nextInt());
+	return buddy;
+	
 }
 public String getName() {
 	return name;

@@ -27,7 +27,7 @@ AddressBook temp;
 		public AddressBook(){
 		super();//this.buddyInfo=new ArrayList<BuddyInfo>();}
 		}
-		   private void writeObject(java.io.ObjectOutputStream stream)
+		 /*  private void writeObject(java.io.ObjectOutputStream stream)
 		            throws IOException {
 
 				for(int i=0;i<this.size();i++){
@@ -39,18 +39,18 @@ AddressBook temp;
 			}
 			 
 		     
-		    }
+		    }*/
 
-		    private void readObject(java.io.ObjectInputStream stream)
+		 /*   private void readObject(java.io.ObjectInputStream stream)
 		            throws IOException, ClassNotFoundException {
 		    	temp=new AddressBook();
-		     
-			while(stream.available() > 0){
-				System.out.println("GHHHH");
+		     temp=(AddressBook) stream.readObject();
+		/*	while(stream.available() > 0){
+			//	System.out.println("GHHHH");
 				 BuddyInfo  buddy = (BuddyInfo) stream.readObject();
-			temp.addBuddy(buddy);}
+			temp.addBuddy(buddy);}*/
 		       
-		    }
+		    
 		
 public void addBuddy(BuddyInfo aBuddyInfo){
 	if(aBuddyInfo!=null){
@@ -76,23 +76,26 @@ public void export1(String file) {
 
 
 
-try {
-	this.writeObject(new ObjectOutputStream(new FileOutputStream(file)));
-} catch (FileNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+	try {
+		ObjectOutputStream p=new ObjectOutputStream(new FileOutputStream(file));
+		p.writeObject(this);
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 
 
 
 }
 public  AddressBook import2(String file){
-
+temp=new AddressBook();
 	try {
-		this.readObject(new ObjectInputStream(new FileInputStream(file)));
+		ObjectInputStream p	=new ObjectInputStream(new FileInputStream(file));
+		temp=(AddressBook)p.readObject();
+		System.out.println(temp);
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -103,7 +106,7 @@ public  AddressBook import2(String file){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-
+System.out.println(temp);
 return temp;
 
 }
@@ -163,15 +166,20 @@ public static void main(String[] args) {
 	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234",20);
 	AddressBook addressBook=new AddressBook();
 	addressBook.addBuddy(buddy);
+	ObjectOutputStream p;
 	try {
-		addressBook.writeObject(new ObjectOutputStream(new FileOutputStream("addressBook.txt")));
-	} catch (FileNotFoundException e) {
+		p = new ObjectOutputStream(new FileOutputStream("addressBook.txt"));
+		p.writeObject(addressBook);
+	} catch (FileNotFoundException e1) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
+		e1.printStackTrace();
+	} catch (IOException e1) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		e1.printStackTrace();
 	}
+	
+	
+	
 
 
 }

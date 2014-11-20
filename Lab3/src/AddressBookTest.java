@@ -49,13 +49,13 @@ AddressBook book;
 		
 	}
 
-	@Test
+/*	@Test
 	public void testExport(){
 		BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234",20);
 		
 		book.addBuddy(buddy);
 		book.export("addressBook.txt");
-		File file = new File("M:/git/sysc3110/Lab3/addressBook.txt");
+		File file = new File("addressBook.txt");
 		assertTrue(file.exists());
 	}
 	
@@ -65,17 +65,17 @@ AddressBook book;
 		
 		book.addBuddy(buddy);
 		AddressBook book2=book.import1("addressBook.txt");
-		System.out.println(book2+" "+book);
+		//System.out.println(book2+" "+book);
 		assertEquals(book.toString(),book2.toString());
 		
-	}
+	}*/
 	@Test
 	public void testExport1(){
 		BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234",20);
 		
 		book.addBuddy(buddy);
 		book.export1("addressBook.txt");
-		File file = new File("M:/git/sysc3110/Lab3/addressBook.txt");
+		File file = new File("addressBook.txt");
 		assertTrue(file.exists());
 	}
 	
@@ -85,7 +85,7 @@ AddressBook book;
 		
 		book.addBuddy(buddy);
 		AddressBook book2=book.import2("addressBook.txt");
-		System.out.println(book2+" "+book);
+	System.out.println(book2+" "+book);
 		assertEquals(book.toString(),book2.toString());
 		
 	}

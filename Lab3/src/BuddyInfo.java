@@ -38,7 +38,7 @@ public boolean equals(BuddyInfo buddy){
 	
 }
 public String toString(){
-	return this.name+"$"+this.address+"$"+this.telephone+"$"+this.age;
+	return this.name+"-"+this.address+"-"+this.telephone+"-"+this.age;
 	
 }
 public String greeting(){
@@ -52,7 +52,7 @@ public Boolean isOver18(){
 	return false;
 }
 public static BuddyInfo import1(String s){
-	String array[]=s.split("\\$");
+	String array[]=s.split("-");
 	String name=null,address=null,telephone = null;
 	int age=0;
 	
@@ -85,7 +85,7 @@ public void setTelephone(String telephone) {
 	this.telephone = telephone;
 }
 public static void main(String[]args){
-	BuddyInfo buddy=import1("Tom$Carleton$1234$12");
+	BuddyInfo buddy=import1("Tom-Carleton-1234-12");
 	System.out.println(buddy);
 }
 }

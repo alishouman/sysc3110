@@ -1,11 +1,17 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
 
-public class BuddyInfo {
+public class BuddyInfo implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String name;
 private String address;
 private String telephone;
 private int age;
+private static Scanner sc;
 public BuddyInfo(String name,String address,String telephone,int age){
 	this.name=name;
 	this.address=address;
@@ -32,7 +38,7 @@ public boolean equals(BuddyInfo buddy){
 	
 }
 public String toString(){
-	return this.name+"$"+this.address+"$"+this.telephone;
+	return this.name+"$"+this.address+"$"+this.telephone+"$"+this.age;
 	
 }
 public String greeting(){
@@ -46,8 +52,17 @@ public Boolean isOver18(){
 	return false;
 }
 public static BuddyInfo import1(String s){
-	Scanner sc = new Scanner(s).useDelimiter("\\s*$\\s*");
-	BuddyInfo buddy=new BuddyInfo(sc.next(),sc.next(),sc.next(),sc.nextInt());
+	String array[]=s.split("\\$");
+	String name=null,address=null,telephone = null;
+	int age=0;
+	
+	 name=array[0];
+	
+			 address=array[1];
+			 telephone=array[2];
+			 age=Integer.parseInt(array[3]);
+
+	BuddyInfo buddy=new BuddyInfo(name,address,telephone,age);
 	return buddy;
 	
 }
@@ -68,5 +83,9 @@ public String getTelephone() {
 }
 public void setTelephone(String telephone) {
 	this.telephone = telephone;
+}
+public static void main(String[]args){
+	BuddyInfo buddy=import1("Tom$Carleton$1234$12");
+	System.out.println(buddy);
 }
 }

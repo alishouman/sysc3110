@@ -16,6 +16,16 @@ import java.util.*;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
 
 
 public class AddressBook extends DefaultListModel implements Serializable {
@@ -161,12 +171,67 @@ public  AddressBook import1(String file){
 	
 	
 }
+public static AddressBook importFromXmlFileSAX(String file)throws Exception{
+	DocumentBuilderFactory factory =DocumentBuilderFactory.newInstance();
+	DocumentBuilder d=factory.newDocumentBuilder();
+	AddressBook addressBook=new AddressBook();
+	File f=new File(file);
+	Document doc=d.parse(f);
+	NodeList lst= doc.getDocumentElement().getChildNodes();
+	for(int ii=0;ii<lst.getLength();ii++){
+		Node n= lst.item(ii);
+		if(n.getNodeName()=="BuddyInfo"){
+			String array[]=n.getTextContent().split("\n");
+			BuddyInfo buddy=new BuddyInfo(array[0],array[1],array[2],Integer.parseInt(array[3]));
+			addressBook.addBuddy(buddy);
+		}
+		//System.out.println("Child: "+n.getNodeName()+ "-->"+n.getTextContent());
+	}
+	return addressBook;
+	
+	
+}
+public static void readDOM (File f)throws Exception{
+	DocumentBuilderFactory factory =DocumentBuilderFactory.newInstance();
+	DocumentBuilder d=factory.newDocumentBuilder();
+	Document doc=d.parse(f);
+	System.out.println("Root: "+ doc.getDocumentElement().getNodeName());
+	NodeList lst= doc.getDocumentElement().getChildNodes();
+	for(int ii=0;ii<lst.getLength();ii++){
+		Node n= lst.item(ii);
+		System.out.println("Child: "+n.getNodeName()+ "-->"+n.getTextContent());
+	}
+}
+public String toXML(){
+	String xml=  "<?xml version='1.0'?>\n"+"<AddressBook>";
+	for(int i=0;i<this.size();i++){
+		xml=xml+((BuddyInfo) this.get(i)).toXML();
+	}
+	xml=xml+"\n</AddressBook>";
+	return xml;
+}
+public void ExportToXmlFile(String file){
+	try {
+		
+		writer1 = new BufferedWriter(new FileWriter(file));
+		
+	
+		writer1.write(this.toXML());
+		writer1.flush();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
 
 public static void main(String[] args) {
 	BuddyInfo buddy=new BuddyInfo("Tom", "Carleton","1234",20);
+	BuddyInfo buddy1=new BuddyInfo("Joe", "Carleton","5432",30);
 	AddressBook addressBook=new AddressBook();
 	addressBook.addBuddy(buddy);
-	ObjectOutputStream p;
+	addressBook.addBuddy(buddy1);
+	/*ObjectOutputStream p;
 	try {
 		p = new ObjectOutputStream(new FileOutputStream("addressBook.txt"));
 		p.writeObject(addressBook);
@@ -176,9 +241,17 @@ public static void main(String[] args) {
 	} catch (IOException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
+	}*/
+	System.out.println(addressBook.toXML());
+	addressBook.ExportToXmlFile("example.xml");
+	AddressBook addressBook1=new AddressBook();
+	try {
+	 addressBook1= importFromXmlFileSAX("example.xml");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-	
-	
+	addressBook1.export("example2.txt");
 	
 
 

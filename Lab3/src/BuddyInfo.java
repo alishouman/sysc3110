@@ -41,6 +41,11 @@ public String toString(){
 	return this.name+"-"+this.address+"-"+this.telephone+"-"+this.age;
 	
 }
+public String toXML(){
+	return  " <BuddyInfo>\n<name>"+this.name+"</name>\n<address>"+this.address+"</address>\n<telephone>"+this.telephone+"</telephone>\n<age>"+this.age+"</age>\n</BuddyInfo>";
+	
+
+}
 public String greeting(){
 	return this.name+" Says Hi my friend";
 }

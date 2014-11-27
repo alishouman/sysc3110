@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<AddressBook> <BuddyInfo>
+<name>Tom</name>
+<address>Carleton</address>
+<telephone>1234</telephone>
+<age>20</age>
+</BuddyInfo> <BuddyInfo>
+<name>Joe</name>
+<address>Carleton</address>
+<telephone>5432</telephone>
+<age>30</age>
+</BuddyInfo>
+</AddressBook>

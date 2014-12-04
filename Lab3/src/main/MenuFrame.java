@@ -1,3 +1,5 @@
+package main;
+
 
 
 
@@ -8,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.*;
+
 
 public class MenuFrame extends JFrame implements ActionListener {
 	JFrame frame;
